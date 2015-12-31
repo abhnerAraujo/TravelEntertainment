@@ -7,14 +7,26 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
 import java.awt.Rectangle;
+import java.sql.SQLException;
+
 import javax.swing.JPanel;
+
+import model.Conexao;
 
 public class Main {
 
 	private JFrame frame;
-	public static JP_login login;
+	public static JP_Login login;
 	public static JP_Local_New novoLocal;
+	public static JP_Anfitriao anfitriao;
+	public static JP_Local_Cadastrado verLocal;
+	public static JP_Escolha escolha;
+	public static JP_Hospede hospede;
+	public static JP_Buscar_Local buscarLocal;
+	public static JP_Usuario_Opcoes usuOpcao;
+	public static JP_Usuario_Add novoUsu;
 	/**
 	 * Launch the application.
 	 */
@@ -35,23 +47,50 @@ public class Main {
 	 * Create the application.
 	 */
 	public Main() {
-		initialize();
+		try {
+			initialize();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Conexao.conexao();
 		
-		login= new JP_login();
+		login= new JP_Login();
 		frame.getContentPane().add(login);
 		
 		novoLocal = new JP_Local_New();
 		frame.getContentPane().add(novoLocal);
+		
+		anfitriao = new JP_Anfitriao();
+		frame.getContentPane().add(anfitriao);
+		
+		verLocal = new JP_Local_Cadastrado();
+		frame.getContentPane().add(verLocal);
+		
+		escolha = new JP_Escolha();
+		frame.getContentPane().add(escolha);
+		
+		hospede = new JP_Hospede();
+		frame.getContentPane().add(hospede);
+		
+		buscarLocal = new JP_Buscar_Local();
+		frame.getContentPane().add(buscarLocal);
+		
+		usuOpcao = new JP_Usuario_Opcoes();
+		frame.getContentPane().add(usuOpcao);
+		
+		novoUsu = new JP_Usuario_Add();
+		frame.getContentPane().add(novoUsu);
 		
 	}
 }

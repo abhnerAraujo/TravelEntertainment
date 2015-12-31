@@ -5,13 +5,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import model.Conexao;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
-public class JP_login extends JPanel {
+public class JP_Login extends JPanel {
 	private JTextField textField;
 	private JPasswordField pfSenha;
 	private JButton btnEntrar;
+	private JButton lblCriarNovo;
 	
 	private void Autenticacao(){
 		String senha="";
@@ -20,6 +25,9 @@ public class JP_login extends JPanel {
 		}
 		if (senha.equals("senha")){
 			System.out.println("autenticado!");
+			Main.login.setVisible(false);
+			Main.escolha.setVisible(true);
+			pfSenha.setText(null);
 			senha="";
 		}
 		else{
@@ -29,8 +37,9 @@ public class JP_login extends JPanel {
 	}
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
 	 */
-	public JP_login() {
+	public JP_Login() throws SQLException {
 		setLayout(null);
 		setBounds(0,0,624, 442);
 		
@@ -55,10 +64,27 @@ public class JP_login extends JPanel {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Autenticacao();
+				try {
+					if(Conexao.myConn.isClosed()){
+						Conexao.conexao();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		btnEntrar.setBounds(10, 136, 71, 23);
+		btnEntrar.setBounds(10, 136, 104, 23);
 		add(btnEntrar);
+		
+		lblCriarNovo = new JButton("Criar novo");
+		lblCriarNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			Main.login.setVisible(false);
+			Main.novoUsu.setVisible(true);
+			}
+		});
+		lblCriarNovo.setBounds(10, 165, 104, 20);
+		add(lblCriarNovo);
 
 	}
 

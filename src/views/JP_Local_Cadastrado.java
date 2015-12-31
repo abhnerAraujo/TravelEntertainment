@@ -1,25 +1,25 @@
 package views;
 
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.border.BevelBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DropMode;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.DropMode;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JLabel;
-import javax.swing.border.TitledBorder;
-import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import java.awt.SystemColor;
 import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.SystemColor;
 
-public class JP_Local_New extends JPanel {
+public class JP_Local_Cadastrado extends JPanel {
+	
+
 	private JTextField tf_titulo;
 	private JTextField tf_disp;
 	private JTextField tf_bairro;
@@ -31,12 +31,13 @@ public class JP_Local_New extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public JP_Local_New() {
-		setVisible(false);
+	public JP_Local_Cadastrado() {
+
 		//caracteristicas do JPanel
 		setBackground(SystemColor.menu);
 		setBounds(0,0,624, 442);
 		setLayout(null);
+		setVisible(false);
 		
 		//Conteudo
 		JPanel panel = new JPanel();
@@ -47,50 +48,66 @@ public class JP_Local_New extends JPanel {
 		panel.setLayout(null);
 		
 		tf_titulo = new JTextField();
-		tf_titulo.setBackground(new Color(255, 255, 255));
+		tf_titulo.setForeground(Color.WHITE);
+		tf_titulo.setEditable(false);
+		tf_titulo.setBackground(SystemColor.text);
 		tf_titulo.setBounds(391, 11, 86, 20);
 		panel.add(tf_titulo);
 		tf_titulo.setColumns(10);
 		
 		tf_disp = new JTextField();
-		tf_disp.setBackground(new Color(255, 255, 255));
+		tf_disp.setForeground(Color.WHITE);
+		tf_disp.setEditable(false);
+		tf_disp.setBackground(SystemColor.text);
 		tf_disp.setBounds(391, 42, 86, 20);
 		panel.add(tf_disp);
 		tf_disp.setColumns(100);
 		
 		tf_bairro = new JTextField();
-		tf_bairro.setBackground(new Color(255, 255, 255));
+		tf_bairro.setForeground(Color.WHITE);
+		tf_bairro.setEditable(false);
+		tf_bairro.setBackground(SystemColor.text);
 		tf_bairro.setBounds(10, 11, 86, 20);
 		panel.add(tf_bairro);
 		tf_bairro.setColumns(10);
 		
 		tf_rua = new JTextField();
-		tf_rua.setBackground(new Color(255, 255, 255));
+		tf_rua.setForeground(Color.WHITE);
+		tf_rua.setEditable(false);
+		tf_rua.setBackground(SystemColor.text);
 		tf_rua.setBounds(10, 42, 86, 20);
 		panel.add(tf_rua);
 		tf_rua.setColumns(10);
 		
 		tf_numero = new JTextField();
-		tf_numero.setBackground(new Color(255, 255, 255));
+		tf_numero.setForeground(Color.WHITE);
+		tf_numero.setEditable(false);
+		tf_numero.setBackground(SystemColor.text);
 		tf_numero.setBounds(10, 73, 86, 20);
 		panel.add(tf_numero);
 		tf_numero.setColumns(10);
 		
 		tf_cep = new JTextField();
-		tf_cep.setBackground(new Color(255, 255, 255));
+		tf_cep.setForeground(Color.WHITE);
+		tf_cep.setEditable(false);
+		tf_cep.setBackground(SystemColor.text);
 		tf_cep.setText("");
 		tf_cep.setBounds(10, 104, 86, 20);
 		panel.add(tf_cep);
 		tf_cep.setColumns(10);
 		
 		tf_valor = new JTextField();
-		tf_valor.setBackground(new Color(255, 255, 255));
+		tf_valor.setForeground(Color.WHITE);
+		tf_valor.setEditable(false);
+		tf_valor.setBackground(SystemColor.text);
 		tf_valor.setBounds(391, 73, 86, 20);
 		panel.add(tf_valor);
 		tf_valor.setColumns(10);
 		
 		JTextPane tf_descr = new JTextPane();
-		tf_descr.setBackground(new Color(255, 255, 255));
+		tf_descr.setForeground(Color.WHITE);
+		tf_descr.setEditable(false);
+		tf_descr.setBackground(SystemColor.text);
 		tf_descr.setBorder(new TitledBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), "Descri\u00E7\u00E3o", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		tf_descr.setBounds(10, 207, 467, 119);
 		panel.add(tf_descr);
@@ -128,29 +145,24 @@ public class JP_Local_New extends JPanel {
 		separator.setBounds(212, 12, 36, 108);
 		panel.add(separator);
 		
-		JButton btnAceitar = new JButton("Aceitar");
+		JButton btnAceitar = new JButton("Atualizar");
 		btnAceitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			Main.novoLocal.setVisible(false);
-			Main.verLocal.setVisible(true);
 			}
 		});
 		btnAceitar.setBounds(408, 359, 89, 23);
 		add(btnAceitar);
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.novoLocal.setVisible(false);
-				Main.anfitriao.setVisible(true);
-			}
-		});
 		btnVoltar.setBounds(309, 359, 89, 23);
 		add(btnVoltar);
 		
 		JLabel lblCadastrarLocal = new JLabel("Cadastrar Local");
 		lblCadastrarLocal.setBounds(507, 11, 107, 72);
 		add(lblCadastrarLocal);
+
+				
 		
 	}
+
 }
