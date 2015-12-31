@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import javax.swing.SwingConstants;
 
 import model.Conexao;
+import model.Consulta;
 
 public class JP_Escolha extends JPanel {
 

@@ -18,6 +18,10 @@ public class JP_Login extends JPanel {
 	private JButton btnEntrar;
 	private JButton lblCriarNovo;
 	
+	public String loginUsuario(){
+		return textField.getText();
+	}
+	
 	private void Autenticacao(){
 		String senha="";
 		for (int i=0;i<pfSenha.getPassword().length;i++){

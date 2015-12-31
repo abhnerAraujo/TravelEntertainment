@@ -25,6 +25,10 @@ import net.proteanit.sql.DbUtils;
 import model.Conexao;
 import model.Consulta;
 
+import java.awt.Font;
+
+import javax.swing.SwingConstants;
+
 public class JP_Anfitriao extends JPanel {
 	
 	private JTable table;
@@ -56,6 +60,13 @@ public class JP_Anfitriao extends JPanel {
 		add(lblNovoLocal);
 		
 		JButton btnVer = new JButton("Ver");
+		btnVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main.anfitriao.setVisible(false);
+				Main.meusLocais.setVisible(true);
+				
+			}
+		});
 		btnVer.setBounds(10, 328, 61, 23);
 		add(btnVer);
 		
@@ -68,6 +79,11 @@ public class JP_Anfitriao extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Main.anfitriao.setVisible(false);
 				Main.escolha.setVisible(true);
+				try {
+					Conexao.fecharResult();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnVoltar.setBounds(426, 408, 89, 23);
@@ -87,22 +103,25 @@ public class JP_Anfitriao extends JPanel {
 		scrollPane.setBounds(10, 11, 604, 306);
 		add(scrollPane);
 		
-		table = new JTable(DbUtils.resultSetToTableModel(Consulta.consultaReserva(4)));
+		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton btnDesconectar = new JButton("OFF");
-		btnDesconectar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton btnVer_1 = new JButton("Ver");
+		btnVer_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
-					Conexao.desconectar();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					table.setModel(DbUtils.resultSetToTableModel(Consulta.consultaReserva()));
+				} catch (SQLException exp) {
+					exp.printStackTrace();
 				}
 			}
 		});
-		btnDesconectar.setBounds(327, 408, 89, 23);
-		add(btnDesconectar);
+		btnVer_1.setBounds(10, 391, 61, 23);
+		add(btnVer_1);
+		
+		JLabel lblLocaisAtivos = new JLabel("Locais Ativos");
+		lblLocaisAtivos.setBounds(81, 395, 83, 14);
+		add(lblLocaisAtivos);
 		
 	}
 }

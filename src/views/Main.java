@@ -27,6 +27,7 @@ public class Main {
 	public static JP_Buscar_Local buscarLocal;
 	public static JP_Usuario_Opcoes usuOpcao;
 	public static JP_Usuario_Add novoUsu;
+	public static JP_MeusLocais meusLocais;
 	/**
 	 * Launch the application.
 	 */
@@ -91,6 +92,9 @@ public class Main {
 		
 		novoUsu = new JP_Usuario_Add();
 		frame.getContentPane().add(novoUsu);
+		
+		meusLocais = new JP_MeusLocais();
+		frame.getContentPane().add(meusLocais);
 		
 	}
 }

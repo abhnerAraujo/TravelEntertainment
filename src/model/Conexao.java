@@ -36,6 +36,13 @@ public class Conexao {
 
     }
     
+    public static void fecharResult() throws SQLException{
+    	myRs.close();
+    	if(myRs.isClosed()){
+    		System.out.println("ResultSet fechado com sucesso!");
+    	}
+    }
+    
     public static void desconectar() throws SQLException{
     	myConn.close();
 		if (myConn.isClosed()){
