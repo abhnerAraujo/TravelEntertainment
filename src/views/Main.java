@@ -64,6 +64,7 @@ public class Main {
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Travel Entertainment");
 		Conexao.conexao();
 		
 		login= new JP_Login();
