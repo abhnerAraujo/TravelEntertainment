@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+
 import java.awt.SystemColor;
 
 public class JP_Local_Cadastrado extends JPanel {
@@ -154,6 +155,12 @@ public class JP_Local_Cadastrado extends JPanel {
 		add(btnAceitar);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main.verLocal.setVisible(false);
+				Main.anfitriao.setVisible(true);
+			}
+		});
 		btnVoltar.setBounds(309, 359, 89, 23);
 		add(btnVoltar);
 		

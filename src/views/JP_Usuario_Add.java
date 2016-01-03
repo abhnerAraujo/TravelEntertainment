@@ -174,7 +174,7 @@ public class JP_Usuario_Add extends JPanel {
 				if(control.VerificarAddUsuario.verificar()){
 					//chama o insert
 					try {
-						model.Insert.insert();
+						model.Insert.insertUsuario();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
