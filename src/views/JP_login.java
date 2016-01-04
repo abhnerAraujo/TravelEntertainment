@@ -22,6 +22,14 @@ public class JP_Login extends JPanel {
 		return textField.getText();
 	}
 	
+	public String pass(){
+		String senha="";
+		for (int i=0;i<pfSenha.getPassword().length;i++){
+			senha=senha+pfSenha.getPassword()[i];
+		}
+		return senha;
+	}
+	
 	private void Autenticacao(){
 		String senha="";
 		for (int i=0;i<pfSenha.getPassword().length;i++){
@@ -31,7 +39,7 @@ public class JP_Login extends JPanel {
 			System.out.println("autenticado!");
 			Main.login.setVisible(false);
 			Main.escolha.setVisible(true);
-			pfSenha.setText(null);
+			pfSenha.setText("");
 			senha="";
 		}
 		else{
