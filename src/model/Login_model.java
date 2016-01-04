@@ -8,14 +8,21 @@ import views.Main;
 
 public class Login_model {
 	
-	public String existe() throws SQLException{
-		String DBCALL = "{call EXISTE(?,?)}";
-        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
-        cs.registerOutParameter(1, Types.VARCHAR);
-        cs.setString(2, Main.login.loginUsuario());
-        cs.setString(3, Main.login.pass());
-        String output = cs.getString(1);
-        cs.close();
-        return output;
+	public static String existe() throws SQLException{
+		
+			String DBCALL = "{call EXISTE(?,?,?)}";
+			Conexao.conexao();
+	        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
+	        String output="";
+	        cs.registerOutParameter(1, Types.VARCHAR);
+	        cs.setString(2, Main.login.loginUsuario());
+	        cs.setString(3, Main.login.pass());
+	        cs.execute();
+	        
+	        output = cs.getString(1);
+	        cs.close();
+	        Conexao.desconectar();
+	        return output;
+
 	}
 }

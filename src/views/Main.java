@@ -67,7 +67,6 @@ public class Main {
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Travel Entertainment");
 		frame.setResizable(false);
-		Conexao.conexao();
 		
 		login= new JP_Login();
 		frame.getContentPane().add(login);

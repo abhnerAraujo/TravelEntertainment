@@ -1,6 +1,7 @@
 package views;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import model.Conexao;
+import model.Login_model;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,6 +22,7 @@ public class JP_Login extends JPanel {
 	private JPasswordField pfSenha;
 	private JButton btnEntrar;
 	private JButton lblCriarNovo;
+	
 	public String loginUsuario(){
 		return textField.getText();
 	}
@@ -31,9 +34,27 @@ public class JP_Login extends JPanel {
 		}
 		return senha;
 	}
+	private void Autenticacao2() throws SQLException{
+		try{
+			if(Login_model.existe().equals(loginUsuario())){
+				System.out.println("autenticado!");
+				Main.login.setVisible(false);
+				Main.escolha.setVisible(true);
+				pfSenha.setText("");
+			}
+		}catch(SQLException exp){
+			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto(s)!");
+			Conexao.desconectar();
+		}catch (NullPointerException npe){
+			Conexao.desconectar();
+			JOptionPane.showMessageDialog(null, "Conexão com não realisada!");
+		}
+
+		
+	}
 	
 	private void Autenticacao(){
-		String senha="";
+		/*String senha="";
 		for (int i=0;i<pfSenha.getPassword().length;i++){
 			senha=senha+pfSenha.getPassword()[i];
 		}
@@ -47,7 +68,7 @@ public class JP_Login extends JPanel {
 		else{
 			System.out.println("Inválido!");
 			senha="";
-		}
+		}*/
 	}
 	/**
 	 * Create the panel.
@@ -81,11 +102,8 @@ public class JP_Login extends JPanel {
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Autenticacao();
 				try {
-					if(Conexao.myConn.isClosed()){
-						Conexao.conexao();
-					}
+					Autenticacao2();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
