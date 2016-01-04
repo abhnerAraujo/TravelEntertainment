@@ -98,11 +98,11 @@ public class JP_Login extends JPanel {
 		lblCriarNovo.setLocation(270, 230);
 		add(lblCriarNovo);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("images\\back.jpg"));
-		label_1.setHorizontalAlignment(SwingConstants.LEFT);
-		label_1.setBounds(7, 7, 640, 480);
-		add(label_1);
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon("images\\back.jpg"));
+		background.setHorizontalAlignment(SwingConstants.LEFT);
+		background.setBounds(7, 7, 640, 480);
+		add(background);
 	}
 
 }
