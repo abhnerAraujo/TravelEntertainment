@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -65,6 +66,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Travel Entertainment");
+		frame.setResizable(false);
 		Conexao.conexao();
 		
 		login= new JP_Login();

@@ -1,5 +1,6 @@
 package views;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -10,6 +11,7 @@ import model.Conexao;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.sql.SQLException;
 
 public class JP_Login extends JPanel {
@@ -17,7 +19,6 @@ public class JP_Login extends JPanel {
 	private JPasswordField pfSenha;
 	private JButton btnEntrar;
 	private JButton lblCriarNovo;
-	
 	public String loginUsuario(){
 		return textField.getText();
 	}
@@ -57,19 +58,23 @@ public class JP_Login extends JPanel {
 		
 		JLabel lbUsuario = new JLabel("Usu\u00E1rio");
 		lbUsuario.setBounds(10, 11, 46, 14);
+		lbUsuario.setLocation(270, 100);
 		add(lbUsuario);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 36, 86, 20);
+		textField.setBounds(10, 36, 104, 20);
+		textField.setLocation(270, 120);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(10, 67, 46, 14);
+		lblSenha.setLocation(270, 150);
 		add(lblSenha);
 		
 		pfSenha = new JPasswordField();
-		pfSenha.setBounds(10, 92, 86, 20);
+		pfSenha.setBounds(10, 92, 104, 20);
+		pfSenha.setLocation(270, 170);
 		add(pfSenha);
 		
 		btnEntrar = new JButton("Entrar");
@@ -86,6 +91,7 @@ public class JP_Login extends JPanel {
 			}
 		});
 		btnEntrar.setBounds(10, 136, 104, 23);
+		btnEntrar.setLocation(270, 200);
 		add(btnEntrar);
 		
 		lblCriarNovo = new JButton("Criar novo");
@@ -96,8 +102,14 @@ public class JP_Login extends JPanel {
 			}
 		});
 		lblCriarNovo.setBounds(10, 165, 104, 20);
+		lblCriarNovo.setLocation(270, 230);
 		add(lblCriarNovo);
-
+		
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon("images\\back.jpg"));
+		background.setHorizontalAlignment(SwingConstants.LEFT);
+		background.setBounds(7, 7, 640, 480);
+		add(background);
 	}
 
 }
