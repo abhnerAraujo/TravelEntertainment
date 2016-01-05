@@ -30,6 +30,27 @@ public class Consulta {
 		return Conexao.myRs;
 	}
 	
+	public static ResultSet consultaLocaisByType(int index, String busca) throws SQLException{
+		String Type = null;
+		if( index == 0){
+			Type = "CIDADE";
+		}else if (index == 1){
+			Type = "BAIRRO";
+		}else if (index == 2){
+			Type = "PAIS";
+		}else if (index == 3){
+			Type = "ESTADO";
+		}
+		System.out.println(Type);
+
+		System.out.println(busca);
+		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DISPONIBILIDADE, BAIRRO "
+				+ "FROM LUGAR WHERE "
+				+ ""+Type+"='"+busca+"'");
+		Conexao.myRs = ps.executeQuery();
+		return Conexao.myRs;
+	}
+	
 	public static boolean checkCheckIn(BigDecimal idReserva) throws SQLException{
 		ps = Conexao.myConn.prepareStatement("SELECT LO.DATA_INICIO"
 				+ " FROM LUGAR LU, LOCACAO LO"
