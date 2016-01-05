@@ -1,5 +1,6 @@
 package views;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
@@ -12,6 +13,7 @@ import javax.swing.border.BevelBorder;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -32,7 +34,12 @@ import javax.swing.SwingConstants;
 public class JP_Anfitriao extends JPanel {
 	
 	private JTable table;
+	private static BigDecimal idLugar;
 	
+	public static String[] params(String tipo){
+		String[] parametros={idLugar.toString(), tipo};
+		return parametros;
+	}
 	/**
 	 * Create the panel.
 	 * @throws SQLException 
@@ -122,6 +129,60 @@ public class JP_Anfitriao extends JPanel {
 		JLabel lblLocaisAtivos = new JLabel("Locais Ativos");
 		lblLocaisAtivos.setBounds(81, 395, 83, 14);
 		add(lblLocaisAtivos);
+		
+		JButton btnCheckIn = new JButton("Check in");
+		btnCheckIn.setToolTipText("Sinalizar check in");
+		btnCheckIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int linhaSelecionada = -1; 
+				linhaSelecionada = table.getSelectedRow(); 
+				if (linhaSelecionada >= 0) { 
+					idLugar = (BigDecimal) table.getValueAt(linhaSelecionada, 0);
+					try {
+						System.out.println(idLugar);
+						boolean bol = Consulta.checkCheckIn(idLugar); // false = falta fazer check in, true = Possui checkin
+						if(bol == true){
+							JOptionPane.showMessageDialog(null, "Check in feito em: "+Consulta.getDataIn()+".");
+						}else{
+							model.Insert.insertCheckInOut("1");
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				} else { 
+					JOptionPane.showMessageDialog(null, "É necessário selecionar um local."); 
+				}
+			}
+		});
+		btnCheckIn.setBounds(426, 332, 95, 23);
+		add(btnCheckIn);
+		
+		JButton btnCheckOut = new JButton("Check Out");
+		btnCheckOut.setToolTipText("Sinalizar check out");
+		btnCheckOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int linhaSelecionada = -1; 
+				linhaSelecionada = table.getSelectedRow(); 
+				if (linhaSelecionada >= 0) { 
+					idLugar = (BigDecimal) table.getValueAt(linhaSelecionada, 0);
+					try {
+						System.out.println(idLugar);
+						boolean bol = Consulta.checkCheckOut(idLugar); // false = falta fazer check in, true = Possui checkin
+						if(bol == true){
+							JOptionPane.showMessageDialog(null, "Check out feito em: "+Consulta.getDataOut()+".");
+						}else{
+							model.Insert.insertCheckInOut("2");
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				} else { 
+					JOptionPane.showMessageDialog(null, "É necessário selecionar um local."); 
+				}
+			}
+		});
+		btnCheckOut.setBounds(525, 332, 95, 23);
+		add(btnCheckOut);
 		
 	}
 }

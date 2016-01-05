@@ -43,7 +43,27 @@ public class Insert {
         cs.close();
         JOptionPane.showMessageDialog(null,"Local cadastrado com sucesso!");
 		}catch(SQLException se){
-			JOptionPane.showMessageDialog(null, "Erro! Cadastro n�o efetuado!");
+			JOptionPane.showMessageDialog(null, "Erro! Cadastro não efetuado!");
+		}
+	}
+	
+	public static void insertCheckInOut(String tipo) throws SQLException{
+		String[] parametro=views.JP_Anfitriao.params(tipo);
+		try{
+		String DBCALL = "{call CHECK_IN_OUT(?,?)}";
+        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
+        cs.setInt(1, Integer.parseInt(parametro[0]));
+        cs.setInt(2, Integer.parseInt(parametro[1]));
+        Conexao.myConn.commit();
+        cs.executeUpdate();
+        cs.close();
+        if(tipo.equals("1")){
+        	JOptionPane.showMessageDialog(null,"Check in registrado com sucesso!");
+        }else if(tipo.equals("2")){
+        	JOptionPane.showMessageDialog(null,"Check Out registrado com sucesso!");
+        }
+		}catch(SQLException se){
+			JOptionPane.showMessageDialog(null, "Erro! Cadastro não efetuado!");
 		}
 	}
 	
