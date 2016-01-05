@@ -23,6 +23,7 @@ public class Main {
 	public static JP_Local_New novoLocal;
 	public static JP_Anfitriao anfitriao;
 	public static JP_Local_Cadastrado verLocal;
+	public static JP_PaginaLocal pagLocal;
 	public static JP_Escolha escolha;
 	public static JP_Hospede hospede;
 	public static JP_Buscar_Local buscarLocal;
@@ -79,6 +80,9 @@ public class Main {
 		
 		verLocal = new JP_Local_Cadastrado();
 		frame.getContentPane().add(verLocal);
+		
+		pagLocal = new JP_PaginaLocal();
+		frame.getContentPane().add(pagLocal);
 		
 		escolha = new JP_Escolha();
 		frame.getContentPane().add(escolha);

@@ -1,6 +1,7 @@
 package views;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import javax.swing.JLabel;
@@ -22,6 +24,7 @@ import net.proteanit.sql.DbUtils;
 public class JP_Buscar_Local extends JPanel {
 	private JTextField tf_procurar;
 	private JTable table;
+	private static String nomeLugar;
 	/**
 	 * Create the panel.
 	 */
@@ -44,11 +47,31 @@ public class JP_Buscar_Local extends JPanel {
 		table.setBackground(Color.WHITE);
 		scrollPane.setViewportView(table);
 		
-		JButton btnAceitar = new JButton("Aceitar");
+		JButton btnAceitar = new JButton("Continuar");
 		btnAceitar.setBounds(408, 359, 89, 23);
+		btnAceitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int linhaSelecionada = -1; 
+				linhaSelecionada = table.getSelectedRow(); 
+				if (linhaSelecionada >= 0) { 
+					nomeLugar = (String) table.getValueAt(linhaSelecionada, 0);
+					try {
+						Consulta.setLocal(nomeLugar);
+						Main.pagLocal.attAtb();
+						Main.buscarLocal.setVisible(false);
+						Main.pagLocal.setVisible(true);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Erro."); 
+					}
+				} else { 
+					JOptionPane.showMessageDialog(null, "É necessário selecionar um local."); 
+				}
+			}
+		});
 		add(btnAceitar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Voltar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.buscarLocal.setVisible(false);
