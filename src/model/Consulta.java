@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import control.Local;
 import views.Main;
 
 public class Consulta {
@@ -28,6 +31,52 @@ public class Consulta {
 				+ "LOGIN='"+Main.login.loginUsuario()+"'");
 		Conexao.myRs = ps.executeQuery();
 		return Conexao.myRs;
+	}
+	
+	public static ResultSet consultaLocaisByType(int index, String busca) throws SQLException{
+		String Type = null;
+		if( index == 0){
+			Type = "CIDADE";
+		}else if (index == 1){
+			Type = "BAIRRO";
+		}else if (index == 2){
+			Type = "PAIS";
+		}else if (index == 3){
+			Type = "ESTADO";
+		}
+		System.out.println(Type);
+
+		System.out.println(busca);
+		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DISPONIBILIDADE, BAIRRO "
+				+ "FROM LUGAR WHERE "
+				+ ""+Type+"='"+busca+"'");
+		Conexao.myRs = ps.executeQuery();
+		return Conexao.myRs;
+	}
+	
+	public static void setLocal(String nomeLocal) throws SQLException{
+		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DESCRICAO, DISPONIBILIDADE, LOGIN, PAIS, BAIRRO, RUA, NUMERO, CEP, ESTADO, CIDADE "
+				+ "FROM LUGAR WHERE "
+				+ " TITULO ='"+nomeLocal+"'");
+		Conexao.myRs = ps.executeQuery();
+		
+		List rowValues = new ArrayList();
+		while (Conexao.myRs.next()) {
+		    rowValues.add(Conexao.myRs.getString("TITULO"));
+		    rowValues.add(Integer.toString(Conexao.myRs.getInt("DIARIA")));
+		    rowValues.add(Conexao.myRs.getString("DESCRICAO"));
+		    rowValues.add(Integer.toString(Conexao.myRs.getInt("DISPONIBILIDADE")));
+		    rowValues.add(Conexao.myRs.getString("LOGIN"));
+		    rowValues.add(Conexao.myRs.getString("PAIS"));
+		    rowValues.add(Conexao.myRs.getString("BAIRRO"));
+		    rowValues.add(Conexao.myRs.getString("RUA"));
+		    rowValues.add(Integer.toString(Conexao.myRs.getInt("NUMERO")));
+		    rowValues.add(Conexao.myRs.getString("CEP"));
+		    rowValues.add(Conexao.myRs.getString("ESTADO"));
+		    rowValues.add(Conexao.myRs.getString("CIDADE"));
+		}
+		String [] contactListNames = (String[]) rowValues.toArray(new String[rowValues.size()]);
+		Local.setLocal(contactListNames[0], Integer.parseInt(contactListNames[1]), contactListNames[2], Integer.parseInt(contactListNames[3]), contactListNames[4], contactListNames[5], contactListNames[6], contactListNames[7], Integer.parseInt(contactListNames[8]), contactListNames[9], contactListNames[10], contactListNames[11]);
 	}
 	
 	public static boolean checkCheckIn(BigDecimal idReserva) throws SQLException{
