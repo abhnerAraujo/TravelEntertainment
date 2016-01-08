@@ -14,13 +14,14 @@ public class Local {
 	private static String cep="";
 	private static String estado="";
 	private static String cidade="";
+	private static int id;
 	
 	
 	public Local(String login){
 		this.setLogin(login);
 	}
 	//TO USANDO ISSO TUDO PRA ALIMENTAR A PAGINA DE UM LOCAL NA HORA DE ADICIONAR RESERVA, PROCUREI E NAO ACHEI AONDE VOCE TAVA USANDO ISSO
-	public static void setLocal(String titulo, int valor, String descri, int disp, String login, String pais, String bairro, String rua, int num, String cep, String estado, String cidade){
+	public static void setLocal(String titulo, int valor, String descri, int disp, String login, String pais, String bairro, String rua, int num, String cep, String estado, String cidade, int id){
 		setTitulo(titulo);
 		setValor_dia(valor);
 		setPais(pais);
@@ -33,6 +34,7 @@ public class Local {
 		setCep(cep);
 		setEstado(estado);
 		setCidade(cidade);
+		setId(id);
 	}
 	
 	public void ConstruirLocal(){
@@ -129,5 +131,11 @@ public class Local {
 	}
 	public static void setCidade(String cidade) {
 		Local.cidade = cidade;
+	}
+	public static int getId() {
+		return id;
+	}
+	public static void setId(int id) {
+		Local.id = id;
 	}
 }

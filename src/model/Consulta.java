@@ -55,7 +55,7 @@ public class Consulta {
 	}
 	
 	public static void setLocal(String nomeLocal) throws SQLException{
-		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DESCRICAO, DISPONIBILIDADE, LOGIN, PAIS, BAIRRO, RUA, NUMERO, CEP, ESTADO, CIDADE "
+		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DESCRICAO, DISPONIBILIDADE, LOGIN, PAIS, BAIRRO, RUA, NUMERO, CEP, ESTADO, CIDADE, ID_LUGAR "
 				+ "FROM LUGAR WHERE "
 				+ " TITULO ='"+nomeLocal+"'");
 		Conexao.myRs = ps.executeQuery();
@@ -74,9 +74,10 @@ public class Consulta {
 		    rowValues.add(Conexao.myRs.getString("CEP"));
 		    rowValues.add(Conexao.myRs.getString("ESTADO"));
 		    rowValues.add(Conexao.myRs.getString("CIDADE"));
+		    rowValues.add(Integer.toString(Conexao.myRs.getInt("ID_LUGAR")));
 		}
 		String [] contactListNames = (String[]) rowValues.toArray(new String[rowValues.size()]);
-		Local.setLocal(contactListNames[0], Integer.parseInt(contactListNames[1]), contactListNames[2], Integer.parseInt(contactListNames[3]), contactListNames[4], contactListNames[5], contactListNames[6], contactListNames[7], Integer.parseInt(contactListNames[8]), contactListNames[9], contactListNames[10], contactListNames[11]);
+		Local.setLocal(contactListNames[0], Integer.parseInt(contactListNames[1]), contactListNames[2], Integer.parseInt(contactListNames[3]), contactListNames[4], contactListNames[5], contactListNames[6], contactListNames[7], Integer.parseInt(contactListNames[8]), contactListNames[9], contactListNames[10], contactListNames[11], Integer.parseInt(contactListNames[12]));
 	}
 	
 	public static boolean checkCheckIn(BigDecimal idReserva) throws SQLException{
