@@ -37,6 +37,12 @@ public class JP_Hospede extends JPanel {
 		add(btnNovaReserva);
 		
 		JButton btnVerReservas = new JButton("Ver Reservas");
+		btnVerReservas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.hospede.setVisible(false);
+				Main.mnhReserv.setVisible(true);
+			}
+		});
 		btnVerReservas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnVerReservas.setBounds(179, 11, 159, 106);
 		add(btnVerReservas);

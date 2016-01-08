@@ -30,6 +30,7 @@ public class Main {
 	public static JP_Usuario_Opcoes usuOpcao;
 	public static JP_Usuario_Add novoUsu;
 	public static JP_MeusLocais meusLocais;
+	public static JP_Minhas_Reservas mnhReserv;
 	/**
 	 * Launch the application.
 	 */
@@ -83,6 +84,9 @@ public class Main {
 		
 		pagLocal = new JP_PaginaLocal();
 		frame.getContentPane().add(pagLocal);
+		
+		mnhReserv = new JP_Minhas_Reservas();
+		frame.getContentPane().add(mnhReserv);
 		
 		escolha = new JP_Escolha();
 		frame.getContentPane().add(escolha);
