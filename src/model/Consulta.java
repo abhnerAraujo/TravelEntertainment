@@ -33,6 +33,14 @@ public class Consulta {
 		return Conexao.myRs;
 	}
 	
+	public static ResultSet consultaReservas() throws SQLException{
+		ps = Conexao.myConn.prepareStatement("SELECT R.ID_RESERVA, L.TITULO, R.DATA_ENTRADA, R.DATA_SAIDA "
+				+ "FROM FAZ_RESERVA R, LUGAR L WHERE "
+				+ "R.LOGIN='"+Main.login.loginUsuario()+"' AND L.ID_LUGAR = R.ID_LUGAR");
+		Conexao.myRs = ps.executeQuery();
+		return Conexao.myRs;
+	}
+	
 	public static ResultSet consultaLocaisByType(int index, String busca) throws SQLException{
 		String Type = null;
 		if( index == 0){

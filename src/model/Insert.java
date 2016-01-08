@@ -98,4 +98,17 @@ public class Insert {
 		}
 	}
 	
+	public static void cancelReserv(int reservId) throws SQLException{
+		try{
+			String DBCALL = "{call CANCELA_RESERVA(?)}";
+	        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
+	        cs.setInt(1, reservId);
+	        Conexao.myConn.commit();
+	        cs.executeUpdate();
+	        cs.close();
+			JOptionPane.showMessageDialog(null, "Reserva Cancelada.");
+		}catch(SQLException se){
+			JOptionPane.showMessageDialog(null, "Erro! Cancelmento não efetuado!");
+		}
+	}
 }
