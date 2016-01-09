@@ -31,6 +31,7 @@ public class Main {
 	public static JP_Usuario_Add novoUsu;
 	public static JP_MeusLocais meusLocais;
 	public static JP_Minhas_Reservas mnhReserv;
+	public static JP_Avaliacoes avaliacoes;
 	/**
 	 * Launch the application.
 	 */
@@ -105,6 +106,9 @@ public class Main {
 		
 		meusLocais = new JP_MeusLocais();
 		frame.getContentPane().add(meusLocais);
+		
+		avaliacoes = new JP_Avaliacoes();
+		frame.getContentPane().add(avaliacoes);
 		
 	}
 }

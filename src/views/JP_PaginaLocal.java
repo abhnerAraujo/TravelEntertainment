@@ -334,5 +334,16 @@ public class JP_PaginaLocal extends JPanel{
 			}
 		});
 		add(btnReservar);
+		
+		JButton lblAvaliacoes = new JButton("Avaliações");
+		lblAvaliacoes.setBounds(507, 11, 100, 25);
+		lblAvaliacoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.pagLocal.setVisible(false);
+				JP_Avaliacoes.actAvaliacoes();
+				Main.avaliacoes.setVisible(true);
+			}
+		});
+		add(lblAvaliacoes);
 	}
 }
