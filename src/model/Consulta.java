@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import control.Local;
+import views.JP_Avaliacoes;
 import views.Main;
 
 public class Consulta {
@@ -15,6 +16,7 @@ public class Consulta {
 	private static String dataIn = null;
 	private static String dataOut = null;
 	static PreparedStatement ps;
+	static PreparedStatement pl;
 	
 	public static ResultSet consultaReserva() throws SQLException{
 		ps = Conexao.myConn.prepareStatement("SELECT FR.ID_RESERVA, FR.LOGIN, FR.DATA_ENTRADA AS ENTRADA, FR.DATA_SAIDA AS SAIDA"
@@ -130,6 +132,32 @@ public class Consulta {
 			return true;
 		}
 		return false;
+	}
+	
+	public static ResultSet consultaAvaliaçoes() throws SQLException{
+		ps = Conexao.myConn.prepareStatement("SELECT LOGIN, TEXTO, NOTA "
+				+ "FROM AVALIACAO WHERE "
+				+ "ID_LUGAR = '"+Local.getId()+"'");
+		
+		pl = Conexao.myConn.prepareStatement("SELECT AVG(NOTA) AS MEDIA "
+				+ "FROM AVALIACAO WHERE "
+				+ "ID_LUGAR = '"+Local.getId()+"'");
+		Conexao.myRs = pl.executeQuery();
+		
+		try {
+			while (Conexao.myRs.next()) {	
+				System.out.println(Conexao.myRs.getString("MEDIA"));
+				String a =Conexao.myRs.getString("MEDIA");
+				System.out.println(a);
+				JP_Avaliacoes.setMediaNota(Conexao.myRs.getString("MEDIA"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+	    }
+		
+
+		Conexao.myRs = ps.executeQuery();
+		return Conexao.myRs;
 	}
 	
 	//setter and getters
