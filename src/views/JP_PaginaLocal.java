@@ -345,5 +345,16 @@ public class JP_PaginaLocal extends JPanel{
 			}
 		});
 		add(lblAvaliacoes);
+		
+		JButton lblAvaliar = new JButton("Avaliar");
+		lblAvaliar.setBounds(507, 43, 100, 25);
+		lblAvaliar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.pagLocal.setVisible(false);
+				JP_Avaliar.attAtb();
+				Main.avaliar.setVisible(true);
+			}
+		});
+		add(lblAvaliar);
 	}
 }

@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
@@ -32,6 +33,7 @@ public class Main {
 	public static JP_MeusLocais meusLocais;
 	public static JP_Minhas_Reservas mnhReserv;
 	public static JP_Avaliacoes avaliacoes;
+	public static JP_Avaliar avaliar;
 	/**
 	 * Launch the application.
 	 */
@@ -109,6 +111,9 @@ public class Main {
 		
 		avaliacoes = new JP_Avaliacoes();
 		frame.getContentPane().add(avaliacoes);
+		
+		avaliar = new JP_Avaliar();
+		frame.getContentPane().add(avaliar);
 		
 	}
 }
