@@ -23,7 +23,6 @@ public class Consulta {
 				+ " FROM FAZ_RESERVA FR,LUGAR LU"
 				+ " WHERE FR.ID_LUGAR=LU.ID_LUGAR AND LU.LOGIN='"+Main.login.loginUsuario()+"' AND DATA_SAIDA>SYSDATE");
 		Conexao.myRs = ps.executeQuery();
-		
 		return Conexao.myRs;
 	}
 	
@@ -54,13 +53,20 @@ public class Consulta {
 		}else if (index == 3){
 			Type = "ESTADO";
 		}
+		
 		System.out.println(Type);
-
-		System.out.println(busca);
-		ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DISPONIBILIDADE, BAIRRO "
-				+ "FROM LUGAR WHERE "
-				+ ""+Type+"='"+busca+"'");
-		Conexao.myRs = ps.executeQuery();
+		
+		if (busca.equals("")){
+			ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DISPONIBILIDADE, BAIRRO "
+					+ "FROM LUGAR");
+			Conexao.myRs = ps.executeQuery();
+		}else{
+			System.out.println(busca);
+			ps = Conexao.myConn.prepareStatement("SELECT TITULO, VALOR_DIA AS DIARIA, DISPONIBILIDADE, BAIRRO "
+					+ "FROM LUGAR WHERE "
+					+ ""+Type+"='"+busca+"'");
+			Conexao.myRs = ps.executeQuery();
+		}
 		return Conexao.myRs;
 	}
 	

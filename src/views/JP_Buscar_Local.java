@@ -96,7 +96,7 @@ public class JP_Buscar_Local extends JPanel {
 		add(typeList);
 		
 		tf_procurar = new JTextField();
-		tf_procurar.setText("Cidade, estado, bairro...");
+		tf_procurar.setText("");
 		tf_procurar.setBounds(10, 393, 123, 20);
 		add(tf_procurar);
 		tf_procurar.setColumns(10);

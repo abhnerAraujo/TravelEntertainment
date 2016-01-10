@@ -35,22 +35,16 @@ public class JP_Login extends JPanel {
 		return senha;
 	}
 	private void Autenticacao2() throws SQLException{
-		try{
-			if(Login_model.existe().equals(loginUsuario())){
-				System.out.println("autenticado!");
-				Main.login.setVisible(false);
-				Main.escolha.setVisible(true);
-				pfSenha.setText("");
-			}
-		}catch(SQLException exp){
+		if(Login_model.existe().equals(loginUsuario())){
+			System.out.println("autenticado!");
+			Main.login.setVisible(false);
+			Main.escolha.setVisible(true);
+			pfSenha.setText("");
+		}
+		else{
 			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto(s)!");
 			Conexao.desconectar();
-		}catch (NullPointerException npe){
-			Conexao.desconectar();
-			JOptionPane.showMessageDialog(null, "Conexão com não realisada!");
 		}
-
-		
 	}
 	
 	private void Autenticacao(){
