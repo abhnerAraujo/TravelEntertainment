@@ -69,14 +69,14 @@ public class JP_PaginaLocal extends JPanel{
 		int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		try {
 		    if(Integer.parseInt(qtdReserv.getText()) > Local.getDisp()){
-				JOptionPane.showMessageDialog(null, "Nao ah vagas."); 
+				JOptionPane.showMessageDialog(null, "Nao há vagas."); 
 		    }else if(Integer.parseInt(qtdReserv.getText()) <= 0) {
 		    	JOptionPane.showMessageDialog(null, "Vagas nao pode ser zero."); 
 		    }else if((Integer.parseInt(qtdReserv.getText()) < Local.getDisp()) && (Integer.parseInt(qtdReserv.getText()) > 0) ){
 		    	System.out.println("ah vagas"); 
 		    	try {
 				    if((Integer.parseInt(diaIn.getText()) <= 0) || (Integer.parseInt(mesIn.getText()) <= 0)) {
-				    	JOptionPane.showMessageDialog(null, "Os campos de data nao podem ser zero."); 
+				    	JOptionPane.showMessageDialog(null, "Os campos de data não podem ser zero."); 
 				    } else if((Integer.parseInt(anoIn.getText()) < year)){
 				    	if(Integer.parseInt(mesIn.getText()) < month){
 				    		if(Integer.parseInt(diaIn.getText()) < day){
@@ -251,7 +251,7 @@ public class JP_PaginaLocal extends JPanel{
 		add(dataEntrada);
 		
 		JTextField diaIn = new JTextField();
-		diaIn.setText("1");
+		diaIn.setText("01");
 		diaIn.setBounds(85, 393, 20, 20);
 		add(diaIn);
 		diaIn.setColumns(10);
@@ -261,7 +261,7 @@ public class JP_PaginaLocal extends JPanel{
 		add(barra1);
 		
 		JTextField mesIn = new JTextField();
-		mesIn.setText("1");
+		mesIn.setText("01");
 		mesIn.setBounds(120, 393, 20, 20);
 		add(mesIn);
 		mesIn.setColumns(10);
@@ -281,7 +281,7 @@ public class JP_PaginaLocal extends JPanel{
 		add(dataSaida);
 		
 		JTextField diaOut = new JTextField();
-		diaOut.setText("1");
+		diaOut.setText("01");
 		diaOut.setBounds(200, 393, 20, 20);
 		add(diaOut);
 		diaOut.setColumns(10);
@@ -291,7 +291,7 @@ public class JP_PaginaLocal extends JPanel{
 		add(barra3);
 		
 		JTextField mesOut = new JTextField();
-		mesOut.setText("1");
+		mesOut.setText("01");
 		mesOut.setBounds(235, 393, 20, 20);
 		add(mesOut);
 		mesOut.setColumns(10);
