@@ -34,7 +34,7 @@ public class JP_Login extends JPanel {
 		}
 		return senha;
 	}
-	private void Autenticacao() throws SQLException{
+	private void Autenticacao2() throws SQLException{
 		try{
 			if(Login_model.existe().equals(loginUsuario())){
 				System.out.println("autenticado!");
@@ -53,8 +53,24 @@ public class JP_Login extends JPanel {
 		
 	}
 	
+	private void Autenticacao(){
+		/*String senha="";
+		for (int i=0;i<pfSenha.getPassword().length;i++){
+			senha=senha+pfSenha.getPassword()[i];
+		}
+		if (senha.equals("senha")){
+			System.out.println("autenticado!");
+			Main.login.setVisible(false);
+			Main.escolha.setVisible(true);
+			pfSenha.setText("");
+			senha="";
+		}
+		else{
+			System.out.println("Inválido!");
+			senha="";
+		}*/
+	}
 	/**
-	 * @author BlackRainbow
 	 * Create the panel.
 	 * @throws SQLException 
 	 */
@@ -87,7 +103,7 @@ public class JP_Login extends JPanel {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Autenticacao();
+					Autenticacao2();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
