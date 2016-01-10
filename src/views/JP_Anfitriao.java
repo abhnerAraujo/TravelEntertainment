@@ -86,11 +86,6 @@ public class JP_Anfitriao extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Main.anfitriao.setVisible(false);
 				Main.escolha.setVisible(true);
-				try {
-					Conexao.fecharResult();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
 			}
 		});
 		btnVoltar.setBounds(426, 408, 89, 23);
@@ -99,6 +94,12 @@ public class JP_Anfitriao extends JPanel {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Main.login.limpaSenha();
+				try {
+					Conexao.desconectar();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 				Main.anfitriao.setVisible(false);
 				Main.login.setVisible(true);
 			}

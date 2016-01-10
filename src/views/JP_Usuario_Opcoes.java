@@ -7,9 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
 import javax.swing.JPasswordField;
+
 import java.awt.Font;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -21,6 +24,33 @@ public class JP_Usuario_Opcoes extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	public String newPass(){
+		String senha="";
+		for (int i=0;i<passwordField_2.getPassword().length;i++){
+			senha=senha+passwordField_2.getPassword()[i];
+		}
+		return senha;
+	}
+	
+	private String getPass(char[] pass){
+		String senha="";
+		for (int i=0;i<pass.length;i++){
+			senha=senha+pass[i];
+		}
+		return senha;
+	}
+	
+	private boolean senhasIguais(){
+		System.out.println(getPass(passwordField.getPassword()));
+		System.out.println(Main.login.pass());
+		if(getPass(passwordField.getPassword()).equals(Main.login.pass())){
+			if(getPass(passwordField_1.getPassword()).equals(getPass(passwordField_2.getPassword()))){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public JP_Usuario_Opcoes() {
 		//caracteristicas do JPanel
 		setVisible(false);
@@ -81,6 +111,17 @@ public class JP_Usuario_Opcoes extends JPanel {
 		
 		JButton btnDeletar = new JButton("Deletar");
 		panel_1.add(btnDeletar);
+		
+		JButton btnAceitar = new JButton("Aceitar");
+		btnAceitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(senhasIguais()){
+					control.Usuario_control.mudarSenha();
+				}
+			}
+		});
+		btnAceitar.setBounds(85, 131, 89, 23);
+		panel.add(btnAceitar);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {

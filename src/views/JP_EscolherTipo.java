@@ -9,12 +9,12 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JButton;
 
-public class JP_EscolhTipo extends JPanel {
+public class JP_EscolherTipo extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public JP_EscolhTipo() {
+	public JP_EscolherTipo() {
 		setBounds(0,0,624, 442);
 		setLayout(null);
 		

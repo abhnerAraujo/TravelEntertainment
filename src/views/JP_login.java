@@ -23,6 +23,14 @@ public class JP_Login extends JPanel {
 	private JButton btnEntrar;
 	private JButton lblCriarNovo;
 	
+	public void setPass(){
+		this.pfSenha.setText(Main.usuOpcao.newPass());
+	}
+	
+	public void limpaSenha(){
+		this.pfSenha.setText("");
+	}
+	
 	public String loginUsuario(){
 		return textField.getText();
 	}
@@ -39,7 +47,7 @@ public class JP_Login extends JPanel {
 			System.out.println("autenticado!");
 			Main.login.setVisible(false);
 			Main.escolha.setVisible(true);
-			pfSenha.setText("");
+			
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto(s)!");
@@ -47,23 +55,6 @@ public class JP_Login extends JPanel {
 		}
 	}
 	
-	private void Autenticacao(){
-		/*String senha="";
-		for (int i=0;i<pfSenha.getPassword().length;i++){
-			senha=senha+pfSenha.getPassword()[i];
-		}
-		if (senha.equals("senha")){
-			System.out.println("autenticado!");
-			Main.login.setVisible(false);
-			Main.escolha.setVisible(true);
-			pfSenha.setText("");
-			senha="";
-		}
-		else{
-			System.out.println("Inválido!");
-			senha="";
-		}*/
-	}
 	/**
 	 * Create the panel.
 	 * @throws SQLException 

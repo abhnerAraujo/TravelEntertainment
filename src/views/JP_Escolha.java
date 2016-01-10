@@ -67,6 +67,7 @@ public class JP_Escolha extends JPanel {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Main.login.limpaSenha();
 				Main.escolha.setVisible(false);
 				Main.login.setVisible(true);
 				try {
