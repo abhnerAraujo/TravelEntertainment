@@ -3,6 +3,7 @@ package views;
 import java.awt.Color;
 import java.awt.SystemColor;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class JP_Usuario_Opcoes extends JPanel {
 	private JPasswordField passwordField;
@@ -110,6 +112,15 @@ public class JP_Usuario_Opcoes extends JPanel {
 		panel_1.add(lblDeletarSuaConta);
 		
 		JButton btnDeletar = new JButton("Deletar");
+		btnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					model.Usuario_model.deletarUsuario();
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, e1); 
+				}
+			}
+		});
 		panel_1.add(btnDeletar);
 		
 		JButton btnAceitar = new JButton("Aceitar");

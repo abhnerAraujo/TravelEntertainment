@@ -3,6 +3,7 @@ package model;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
+import java.sql.Statement;
 import java.sql.Types;
 
 import javax.swing.JOptionPane;
@@ -31,5 +32,12 @@ public class Usuario_model {
 		{
 			System.out.println("Deu merda");
 		}
+	}
+	
+	public static void deletarUsuario() throws SQLException{
+        Statement stmt = Conexao.myConn.createStatement();
+        stmt.executeUpdate ("DELETE FROM USUARIO WHERE LOGIN='"+Main.login.loginUsuario()+"'");
+        Conexao.myConn.commit();
+        stmt.close();
 	}
 }
