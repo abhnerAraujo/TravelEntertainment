@@ -93,6 +93,9 @@ public class Consulta {
 		    rowValues.add(Integer.toString(Conexao.myRs.getInt("ID_LUGAR")));
 		}
 		String [] contactListNames = (String[]) rowValues.toArray(new String[rowValues.size()]);
+		for (int i=0;i<contactListNames.length;i++){
+			System.out.println(contactListNames[i]);
+		}
 		Local.setLocal(contactListNames[0], Integer.parseInt(contactListNames[1]), contactListNames[2], Integer.parseInt(contactListNames[3]), contactListNames[4], contactListNames[5], contactListNames[6], contactListNames[7], Integer.parseInt(contactListNames[8]), contactListNames[9], contactListNames[10], contactListNames[11], Integer.parseInt(contactListNames[12]));
 	}
 	
