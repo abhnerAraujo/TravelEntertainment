@@ -318,10 +318,12 @@ public class JP_PaginaLocal extends JPanel{
 					String dateIn = formateDate(diaIn.getText(), mesIn.getText(), anoIn.getText());
 					String dateOut = formateDate(diaOut.getText(), mesOut.getText(), anoOut.getText());
 					try {
+						System.out.println("Tenta fazer a reserva");
 						Insert.insertReserva(dateIn, dateOut, Integer.parseInt(qtdReserv.getText()));
 						JOptionPane.showMessageDialog(null, "Reserva feita com sucesso."); 
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
+						System.out.println("Erro de Sql");
 						JOptionPane.showMessageDialog(null, "Erro."); 
 					} catch (NumberFormatException e1) {
 						// TODO Auto-generated catch block
