@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -26,6 +27,14 @@ public class JP_Avaliar extends JPanel {
 	
 	public static void attAtb(){
 		titulo.setText(Local.getTitulo());
+	}
+	
+	public boolean verCamps(String nota, String texto){
+		if(nota.equals("") || texto.equals("")){
+			JOptionPane.showMessageDialog(null, "Preencha os campos em branco."); 
+			return false;
+		}
+		return true;
 	}
 	
 	public JP_Avaliar() throws SQLException {
@@ -50,7 +59,7 @@ public class JP_Avaliar extends JPanel {
 				Main.pagLocal.setVisible(true);
 			}
 		});
-		btnVoltar.setBounds(426, 408, 89, 23);
+		btnVoltar.setBounds(309, 359, 89, 23);
 		add(btnVoltar);
 		
 		titulo = new JLabel(Local.getTitulo());
@@ -78,6 +87,23 @@ public class JP_Avaliar extends JPanel {
 		lblSomenteNmeros.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblSomenteNmeros.setBounds(353, 76, 86, 14);
 		panel.add(lblSomenteNmeros);
+		
+		JButton btnAvaliar = new JButton("Avaliar");
+		btnAvaliar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(verCamps(tf_numero.getText(), tf_descr.getText())){
+					try {
+						model.Insert.avalia(tf_numero.getText(), tf_descr.getText());
+						Main.avaliar.setVisible(false);
+						Main.pagLocal.setVisible(true);
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Ocorreu algum erro"); 
+					}
+				}
+			}
+		});
+		btnAvaliar.setBounds(408, 359, 89, 23);
+		add(btnAvaliar);
 	}
 
 }

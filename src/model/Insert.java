@@ -16,7 +16,6 @@ import views.Main;
 public class Insert {
 	
 	public static void insertUsuario() throws SQLException{
-		Conexao.conexao();
 		String[] parametro=views.JP_Usuario_Add.params();
         Statement stmt = Conexao.myConn.createStatement();
         stmt.executeUpdate("INSERT INTO USUARIO(EMAIL, NOME, LOGIN, SENHA, BAIRRO, RUA, NUMERO, CEP) "
@@ -24,7 +23,6 @@ public class Insert {
         		"','"+parametro[4]+"','"+parametro[5]+"',"+Integer.parseInt(parametro[6])+",'"+parametro[7]+"')");
         Conexao.myConn.commit();
         stmt.close();
-        Conexao.desconectar();
 	}
 	
 	public static void insertLocal() throws SQLException{
@@ -97,7 +95,7 @@ public class Insert {
 	        cs.close();
 	        System.out.println("Fez tudo");
 		}catch(SQLException se){
-			se.printStackTrace();
+			System.out.println("Outro erro de sql");
 			JOptionPane.showMessageDialog(null, "Erro! Reserva não efetuada!");
 		}
 	}
@@ -115,4 +113,23 @@ public class Insert {
 			JOptionPane.showMessageDialog(null, "Erro! Cancelmento não efetuado!");
 		}
 	}
+	
+	public static void avalia(String nota, String texto) throws SQLException{
+		try{
+			String DBCALL = "{call AVALIAR(?, ?, ?, ?)}";
+	        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
+	        cs.setString(1, Main.login.loginUsuario());
+	        cs.setInt(2, Local.getId());
+	        cs.setString(3, texto);
+	        cs.setInt(4, Integer.parseInt(nota));
+	        Conexao.myConn.commit();
+	        cs.executeUpdate();
+	        cs.close();
+			JOptionPane.showMessageDialog(null, "Avaliação feita com sucesso.");
+		}catch(SQLException se){
+			JOptionPane.showMessageDialog(null, "Erro! Avaliação não efetuada, talvez voce ja tenha avaliado!");
+		}
+	}
+	
+	
 }
