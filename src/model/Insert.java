@@ -30,7 +30,7 @@ public class Insert {
 	public static void insertLocal() throws SQLException{
 		String[] parametro=views.JP_Local_New.params();
 		try{
-			String DBCALL = "{call CADASTRAR_LOCAL(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+			String DBCALL = "{call CADASTRAR_LOCAL(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 	        CallableStatement cs = Conexao.myConn.prepareCall(DBCALL);
 	        cs.setString(1, parametro[0]);
 	        cs.setInt(2, Integer.parseInt(parametro[1]));
@@ -38,14 +38,13 @@ public class Insert {
 	        cs.setInt(4, Integer.parseInt(parametro[3]));
 	        cs.setString(5, Main.login.loginUsuario());
 	        cs.setString(6, parametro[4]);
-	        cs.setString(7, parametro[5]);
-	        cs.setInt(8, Integer.parseInt(parametro[6]));
+	        cs.setInt(7, Integer.parseInt(parametro[5]));
+	        cs.setString(8, parametro[6]);
 	        cs.setString(9, parametro[7]);
 	        cs.setString(10, parametro[8]);
 	        cs.setString(11, parametro[9]);
 	        cs.setString(12, parametro[10]);
 	        cs.setString(13, parametro[11]);
-	        cs.setInt(14, Integer.parseInt(parametro[3]));
 	        Conexao.myConn.commit();
 	        cs.executeUpdate();
 	        cs.close();
@@ -98,7 +97,7 @@ public class Insert {
 	        System.out.println("Fez tudo");
 		}catch(SQLException se){
 			System.out.println("Outro erro de sql");
-			JOptionPane.showMessageDialog(null, "Erro! Reserva não efetuada!");
+			JOptionPane.showMessageDialog(null, se);
 		}
 	}
 	
